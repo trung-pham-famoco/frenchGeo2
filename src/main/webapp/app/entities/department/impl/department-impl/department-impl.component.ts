@@ -31,16 +31,10 @@ export class DepartmentImplComponent implements OnInit, AfterViewInit, OnDestroy
   departments!: DepartmentDataSource;
   // properties and selector
   minNbsOfPeople: string[] = ['500000', '600000', '700000', '800000'];
-  // parameters to send to server
-  pageSize: number = this.PAGE_SIZE_BY_DEFAULT;
-  page!: number;
-  sort!: string[];
-  minNbOfResidents?: string;
-  regionName?: string;
   public filter: DepartmentFilter = {};
   public filterForm = this.formBuilder.group({
-    filterNbPeopleMin: 0,
-    regionName: ''
+    filterPopulationMin: 0,
+    filterRegionName: ''
   });
   private destroy$ = new Subject();
 
@@ -56,8 +50,8 @@ export class DepartmentImplComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   private subscribeToReactiveForm(): void {
-    this._filterFormField('filterNbPeopleMin', 'nbPeopleMin', (val: number) => val);
-    this._filterFormField('regionName', 'regionName', (val: string) => val);
+    this._filterFormField('filterPopulationMin', 'populationMin', (val: number) => val);
+    this._filterFormField('filterRegionName', 'regionName', (val: string) => val);
   }
 
   private _filterFormField(formControlName: string, filterObjectField: string, fcChangeValue: (val: any) => any): void {
