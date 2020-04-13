@@ -1,0 +1,11 @@
+version: '2'
+services:
+  frenchgeo2-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/frenchGeo2/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=frenchGeo2
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
