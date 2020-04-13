@@ -1,20 +1,12 @@
 import { DataSource } from '@angular/cdk/table';
 import { IDepartment } from 'app/shared/model/department.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { DepartmentService } from './department.service';
+import { DepartmentService, DepartmentPagination } from './department.service';
 import { finalize, catchError, delay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { DepartmentFilter } from './department.filter';
 import { HttpResponse } from '@angular/common/http';
-
-type DepartmentHttpParams = {
-  page: number;
-  size: number;
-  sort?: string[];
-  populationMin?: string;
-  regionName?: string;
-};
 
 export class DepartmentDataSource implements DataSource<IDepartment> {
   /**
@@ -53,24 +45,24 @@ export class DepartmentDataSource implements DataSource<IDepartment> {
   loadDepartments(filter: DepartmentFilter, sortField: string, sortDirection: string, pageIndex: number, pageSize: number): void {
     this.loadingSubject.next(true);
 
-    const q: DepartmentHttpParams = { page: pageIndex, size: pageSize };
+    const query: DepartmentPagination = { page: pageIndex, size: pageSize, sort: ['id,asc'] };
     if (sortField) {
-      q.sort = this.sort(sortField, sortDirection);
+      query.sort = this.sort(sortField, sortDirection);
     }
 
     /**
      * If you want to add new filter you can add them here
      */
     if (filter.populationMin) {
-      q.populationMin = filter.populationMin;
+      query.populationMin = filter.populationMin;
     }
 
     if (filter.regionName) {
-      q.regionName = filter.regionName;
+      query.regionName = filter.regionName;
     }
 
     this.departmentService
-      .query(q)
+      .query(query)
       .pipe(
         delay(800), // An ergo delay time that could be in constant
         catchError((err, caught) => caught),
