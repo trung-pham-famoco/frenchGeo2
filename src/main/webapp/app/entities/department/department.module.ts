@@ -7,10 +7,17 @@ import { DepartmentDetailComponent } from './department-detail.component';
 import { DepartmentUpdateComponent } from './department-update.component';
 import { DepartmentDeleteDialogComponent } from './department-delete-dialog.component';
 import { departmentRoute } from './department.route';
+import { DepartmentImplComponent } from './impl/department-impl/department-impl.component';
 
 @NgModule({
   imports: [FrenchGeo2SharedModule, RouterModule.forChild(departmentRoute)],
-  declarations: [DepartmentComponent, DepartmentDetailComponent, DepartmentUpdateComponent, DepartmentDeleteDialogComponent],
+  declarations: [
+    DepartmentImplComponent,
+    DepartmentComponent,
+    DepartmentDetailComponent,
+    DepartmentUpdateComponent,
+    DepartmentDeleteDialogComponent
+  ],
   entryComponents: [DepartmentDeleteDialogComponent]
 })
 export class FrenchGeo2DepartmentModule {}

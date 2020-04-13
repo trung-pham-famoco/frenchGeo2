@@ -1,0 +1,63 @@
+<h4>Department filters:</h4>
+
+  <div class="container-filters">
+    <form [formGroup]="filterForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Nb of people Min</mat-label>
+            <mat-select formControlName="filterNbPeopleMin">
+              <mat-option [value]="600000">600000</mat-option>
+              <mat-option [value]="600000">700000</mat-option>
+              <mat-option [value]="600000">800000</mat-option>
+              <mat-option [value]="600000">900000</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="basic">
+          <mat-label>Region's Name</mat-label>
+          <input matInput formControlName="regionName">
+        </mat-form-field>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <div class="progress-container">
+      <mat-progress-bar mode="indeterminate" *ngIf="departments.loading$ | async"></mat-progress-bar>
+    </div>
+    <table mat-table [dataSource]="departments" class="mat-elevation-z8" matSort>
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let department"> {{department.id}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let department"> {{department.name}} </td>
+      </ng-container>
+    
+      <!-- Population Column -->
+      <ng-container matColumnDef="population">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Population </th>
+        <td mat-cell *matCellDef="let department"> {{department.population}} </td>
+      </ng-container>
+    
+      <!-- Department Column -->
+      <ng-container matColumnDef="departmentNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Department number </th>
+        <td mat-cell *matCellDef="let department"> {{department.departmentNumber}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="region.name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Region </th>
+        <td mat-cell *matCellDef="let department"> {{department.regionName}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="departments.totalElements"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 20, 40]">
+    </mat-paginator>
+  </div>
