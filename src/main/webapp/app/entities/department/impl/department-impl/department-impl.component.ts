@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 
-import { IDepartment } from 'app/shared/model/department.model';
 import { DepartmentService } from '../department.service';
-import { HttpResponse, HttpHeaders } from '@angular/common/http';
-import { Sort, MatSort } from '@angular/material/sort';
-import { PageEvent, MatPaginator } from '@angular/material/paginator';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 import { DepartmentDataSource } from '../department.datasource';
 import { DepartmentFilter } from '../department.filter';
 import { FormBuilder } from '@angular/forms';
@@ -27,7 +24,6 @@ type DepartmentHttpParams = {
 export class DepartmentImplComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly PAGE_SIZE_BY_DEFAULT = 10;
   private readonly PAGE_INDEX_BY_DEFAULT = 0;
-  private readonly SORT_BY_DEFAULT = ['id,asc'];
   // properties for paginator
   displayedColumns: string[] = ['id', 'name', 'population', 'departmentNumber', 'region.name'];
   totalNbOfDepartments?: number;

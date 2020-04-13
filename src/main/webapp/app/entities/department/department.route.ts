@@ -9,7 +9,6 @@ import { Authority } from 'app/shared/constants/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { IDepartment, Department } from 'app/shared/model/department.model';
 import { DepartmentService } from './department.service';
-import { DepartmentComponent } from './department.component';
 import { DepartmentDetailComponent } from './department-detail.component';
 import { DepartmentUpdateComponent } from './department-update.component';
 import { DepartmentImplComponent } from './impl/department-impl/department-impl.component';

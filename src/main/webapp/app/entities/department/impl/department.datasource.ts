@@ -3,7 +3,7 @@ import { IDepartment } from 'app/shared/model/department.model';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { DepartmentService } from './department.service';
 import { finalize, catchError, delay } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { DepartmentFilter } from './department.filter';
 import { HttpResponse } from '@angular/common/http';
