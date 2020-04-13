@@ -16,6 +16,6 @@ export class DepartmentService {
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<IDepartment[]>(this.resourceUrl + '/getDepartmentsWithFilter', { params: options, observe: 'response' });
+    return this.http.get<IDepartment[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 }
