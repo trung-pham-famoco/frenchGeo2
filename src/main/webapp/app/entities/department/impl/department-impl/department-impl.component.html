@@ -4,16 +4,16 @@
     <form [formGroup]="filterForm">
         <mat-form-field appearance="outline">
             <mat-label>Nb of people Min</mat-label>
-            <mat-select formControlName="filterNbPeopleMin">
+            <mat-select formControlName="filterPopulationMin">
               <mat-option [value]="600000">600000</mat-option>
-              <mat-option [value]="600000">700000</mat-option>
-              <mat-option [value]="600000">800000</mat-option>
-              <mat-option [value]="600000">900000</mat-option>
+              <mat-option [value]="700000">700000</mat-option>
+              <mat-option [value]="800000">800000</mat-option>
+              <mat-option [value]="900000">900000</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill" color="basic">
           <mat-label>Region's Name</mat-label>
-          <input matInput formControlName="regionName">
+          <input matInput formControlName="filterRegionName">
         </mat-form-field>
     </form>
   </div>
@@ -57,7 +57,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <mat-paginator [length]="departments.totalElements"
-                [pageSize]="pageSize"
-                [pageSizeOptions]="[5, 10, 20, 40]">
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 20, 40]" [showFirstLastButtons]="true">
     </mat-paginator>
   </div>
