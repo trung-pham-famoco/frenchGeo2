@@ -61,8 +61,8 @@ export class DepartmentDataSource implements DataSource<IDepartment> {
     /**
      * If you want to add new filter you can add them here
      */
-    if (filter.nbPeopleMin) {
-      q.threshold = filter.nbPeopleMin;
+    if (filter.populationMin) {
+      q.threshold = filter.populationMin;
     }
 
     if (filter.regionName) {

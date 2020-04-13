@@ -1,5 +1,4 @@
 export interface DepartmentFilter {
-  nbPeopleMin?: string;
-
+  populationMin?: string;
   regionName?: string;
 }
