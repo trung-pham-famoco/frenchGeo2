@@ -64,8 +64,6 @@ export class DepartmentImplComponent implements OnInit, AfterViewInit, OnDestroy
         takeUntil(this.destroy$)
       )
       .subscribe(value => {
-        // eslint-disable-next-line no-console
-        console.log('value = ', value);
         this._paginator.pageIndex = 0;
         this.filter[filterObjectField] = fcChangeValue(value);
         this.loadDepartmentsPage();
