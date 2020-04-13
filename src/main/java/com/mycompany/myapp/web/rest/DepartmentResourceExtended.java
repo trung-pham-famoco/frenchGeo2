@@ -38,19 +38,19 @@ public class DepartmentResourceExtended {
         this.departmentServiceExtended = departmentServiceExtended;
     }
 
-    @GetMapping("/departments/getDepartmentsWithFilter")
+    @GetMapping("/departments")
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    public ResponseEntity<List<DeptWithRegionName>> getDepartmentsWithFilter(@RequestParam("threshold") Optional<Integer> pThreshold, @RequestParam("region") Optional<String> pRegion, Pageable pageable) {
-        Integer threshold = null;
-        if (pThreshold.isPresent()) {
-            threshold = pThreshold.get();
+    public ResponseEntity<List<DeptWithRegionName>> getDepartmentsWithPagination(@RequestParam("populationMin") Optional<Integer> pPopulationMin, @RequestParam("regionName") Optional<String> pRegionName, Pageable pageable) {
+        Integer populationMin = null;
+        if (pPopulationMin.isPresent()) {
+            populationMin = pPopulationMin.get();
         }
-        String region = "";
-        if (pRegion.isPresent()) {
-            region = pRegion.get();
+        String regionName = "";
+        if (pRegionName.isPresent()) {
+            regionName = pRegionName.get();
         }
-        log.debug("REST request to get all departments filtered by region and a population threshold: {}, {}", threshold, region);
-        final Page<DeptWithRegionName> page = departmentServiceExtended.getDepartmentsWithRegionName(region, threshold, pageable);
+        log.debug("REST request to get all departments filtered by region and a minimum number of people: {}, {}", populationMin, regionName);
+        final Page<DeptWithRegionName> page = departmentServiceExtended.getDepartmentsWithPagination(regionName, populationMin, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -30,8 +30,8 @@ public class DepartmentServiceImplExtended extends DepartmentServiceImpl impleme
     }
 
     @Override
-    public Page<DeptWithRegionName> getDepartmentsWithRegionName(String region, Integer threshold, Pageable pageable) {
-        log.debug("Request to get Departments with their region's name");
-        return departmentRepositoryExtended.getDepartmentsWithPagination(region, threshold, pageable);
+    public Page<DeptWithRegionName> getDepartmentsWithPagination(String regionName, Integer populationMin, Pageable pageable) {
+        log.debug("Request to get all departments with pagination");
+        return departmentRepositoryExtended.getDepartmentsWithPagination(regionName, populationMin, pageable);
     }
 }

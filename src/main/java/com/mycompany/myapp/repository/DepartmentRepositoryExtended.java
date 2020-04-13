@@ -19,6 +19,6 @@ public interface DepartmentRepositoryExtended extends DepartmentRepository{
         "FROM Department department " +
         "JOIN department.region region " +
         "WHERE (region.name LIKE CONCAT('%',:region,'%')) " +
-        "AND (:threshold IS NULL OR department.population > :threshold)")
-    Page<DeptWithRegionName> getDepartmentsWithPagination(@Param("region") String region, @Param("threshold") Integer threshold, Pageable pageable);
+        "AND (:populationMin IS NULL OR department.population > :populationMin)")
+    Page<DeptWithRegionName> getDepartmentsWithPagination(@Param("region") String regionName, @Param("populationMin") Integer populationMin, Pageable pageable);
 }
