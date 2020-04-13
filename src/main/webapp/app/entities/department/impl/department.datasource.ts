@@ -12,8 +12,8 @@ type DepartmentHttpParams = {
   page: number;
   size: number;
   sort?: string[];
-  threshold?: string;
-  region?: string;
+  populationMin?: string;
+  regionName?: string;
 };
 
 export class DepartmentDataSource implements DataSource<IDepartment> {
@@ -62,11 +62,11 @@ export class DepartmentDataSource implements DataSource<IDepartment> {
      * If you want to add new filter you can add them here
      */
     if (filter.populationMin) {
-      q.threshold = filter.populationMin;
+      q.populationMin = filter.populationMin;
     }
 
     if (filter.regionName) {
-      q.region = filter.regionName;
+      q.regionName = filter.regionName;
     }
 
     this.departmentService
