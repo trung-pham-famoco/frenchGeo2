@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
-import { createRequestOption } from 'app/shared/util/request-util';
+import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IDepartment } from 'app/shared/model/department.model';
 
 type EntityArrayResponseType = HttpResponse<IDepartment[]>;
@@ -18,4 +18,8 @@ export class DepartmentService {
     const options = createRequestOption(req);
     return this.http.get<IDepartment[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
+}
+
+export interface DepartmentPagination extends Pagination {
+  [key: string]: any;
 }
